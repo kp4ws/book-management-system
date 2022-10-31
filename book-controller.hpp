@@ -21,9 +21,4 @@ public:
     void deleteBook(int bookID)
     {
     }
-
-private:
-    void saveToDatabase()
-    {
-    }
 };
