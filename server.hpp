@@ -22,7 +22,7 @@ private:
     void initializeDatabase()
     {
         //csv file format
-        //uid, isbn, bookName, bookDescription
+        //uid, isbn, bookTitle, bookDescription
 
     }
 };
