@@ -12,6 +12,7 @@ public:
 
     void readBook(int bookISBN)
     {
+        
     }
 
     void updateBook(int currentBookISBN, int newBookISBN, std::string newTitle, std::string newDescription)
@@ -21,6 +22,6 @@ public:
 
     void deleteBook(int bookISBN)
     {
-        
+
     }
 };
