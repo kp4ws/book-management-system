@@ -1,16 +1,15 @@
 #include <string>
 
-class BookModel
+class Book
 {
 public:
-    BookModel(int newISBN, std::string newTitle, std::string newDescription)
+    Book(int newISBN, std::string newTitle, std::string newDescription)
     {
-        //uid = generateUID();
         isbn = newISBN;
         title = newTitle;
         description = newDescription;
     }
-    ~BookModel() {}
+    ~Book() {}
 
     // setters
     void setISBN(int newISBN) { isbn = newISBN; }
@@ -21,6 +20,8 @@ public:
     int getISBN() const { return isbn; }
     std::string getTitle() const { return title; }
     std::string getDescription() const { return description; }
+    
+    void display() {std::cout << isbn << "," << title << "," << description << std::endl;}
 
 private:
     int uid;
