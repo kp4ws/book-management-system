@@ -24,7 +24,6 @@ public:
     void display() {std::cout << isbn << "," << title << "," << description << std::endl;}
 
 private:
-    int uid;
     int isbn;
     std::string title;
     std::string description;
