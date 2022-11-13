@@ -68,7 +68,14 @@ private:
         std::cout << "Enter description: ";
         std::cin >> description;
 
-        dataHandler.createBook(stoi(unparsedIsbn), title, description);
+        try
+        {
+            dataHandler.createBook(stoi(unparsedIsbn), title, description);
+        }
+        catch (AmbiguousIsbnException e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
 
     void handleDisplay()
@@ -80,7 +87,7 @@ private:
         dataHandler.displayBook(stoi(unparsedIsbn));
     }
 
-    //You cannot update isbn
+    // You cannot update isbn
     void handleUpdate()
     {
         std::string unparsedIsbn = "", newTitle = "", newDescription = "";
@@ -103,7 +110,7 @@ private:
         std::cout << "Are you sure you want to delete: " << unparsedIsbn << "? (1 = yes, 0 = no)" << std::endl;
         std::string exitCondition = "";
         std::cin >> exitCondition;
-        if(stoi(exitCondition) == 0)
+        if (stoi(exitCondition) == 0)
             return;
 
         dataHandler.deleteBook(stoi(unparsedIsbn));

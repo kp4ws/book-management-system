@@ -1,48 +1,49 @@
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
-#include <iterator>
 
 class DbUtil
 {
-    public:
-        std::unordered_map<int, Book> retrieveFromDatabase()
+public:
+    std::unordered_map<int, Book> retrieveFromDatabase()
+    {
+        std::unordered_map<int, Book> resultList;
+        std::string fileText;
+        std::ifstream file;
+
+        file.open(FILE_NAME, std::ios::in);
+        while (std::getline(file, fileText))
         {
-            std::unordered_map<int, Book> resultList;
-            std::ifstream file;
-            file.open(FILE_NAME, std::ios::in);
-            std::string fileText;
-            
-            int delimiterIndex = 0;
-            while (std::getline(file, fileText))
-            {
-                //std::string test1 = fileText.substr(0, fileText.find(begin(0), fileText.length(), ","));
+            int isbn = stoi(fileText.substr(0, fileText.find_first_of(',')));
+            std::string title = fileText.substr(fileText.find_first_of(',') + 1, fileText.find_last_of(',') - fileText.find_first_of(',') - 1);
+            std::string description = fileText.substr(fileText.find_last_of(',') + 1, fileText.length());
 
-                std::string test2 = fileText.substr(fileText.find(",") + 1, fileText.find(","));
-                std::string test3 = fileText.substr(fileText.find(",") + delimiterIndex, fileText.find(","));
-
-                //std::cout << test1 << "\n";
-                //std::cout << fileText;
-            }
-            file.close();
-
-            return resultList;
+            Book book(isbn, title, description);
+            resultList.insert({isbn, book});
         }
+        file.close();
 
-        void saveToDatabase(std::unordered_map<int, Book> bookList)
-        {
-            std::ofstream file;
-            file.open(FILE_NAME, std::ios::out | std::ios::app);
-            for (std::unordered_map<int, Book>::iterator it = bookList.begin(); it != bookList.end(); ++it)
-            {
-                int key = it->first;
-                Book book = it->second;
-                const std::string bookFormat = std::to_string(book.getISBN()) + "," + book.getTitle() + "," + book.getDescription();
-                file << bookFormat + "\n";
-            }
-            file.close();
-        }
+        return resultList;
+    }
 
-    private:
+    void saveToDatabase(Book book)
+    {
+        std::ofstream file;
+        const std::string bookFormat = std::to_string(book.getISBN()) + "," + book.getTitle() + "," + book.getDescription();
+        file.open(FILE_NAME, std::ios::out | std::ios::app);
+        file << bookFormat + "\n";
+        file.close();
+
+        // THIS CODE IS USED TO REPLACE ENTIRE FILE
+        //  for (std::unordered_map<int, Book>::iterator it = bookList.begin(); it != bookList.end(); ++it)
+        //  {
+        //      int key = it->first;
+        //      Book book = it->second;
+        //      const std::string bookFormat = std::to_string(book.getISBN()) + "," + book.getTitle() + "," + book.getDescription();
+        //      file << bookFormat + "\n";
+        //  }
+    }
+
+private:
     const std::string FILE_NAME = "db.csv";
 };

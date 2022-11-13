@@ -17,8 +17,7 @@ public:
 
         Book book(isbn, title, description);
         bookList.insert({book.getISBN(), book});
-        
-        db.saveToDatabase(bookList);
+        db.saveToDatabase(book);
     }
 
     void displayBook(int isbn)
