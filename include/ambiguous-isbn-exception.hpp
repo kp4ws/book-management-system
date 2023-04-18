@@ -1,4 +1,5 @@
-#include <iostream>
+#ifndef __AMBIGUOUS_EXCEPTION_HEADER__
+#define __AMBIGUOUS_EXCEPTION_HEADER__
 
 class AmbiguousIsbnException : public std::exception 
 {
@@ -7,3 +8,5 @@ class AmbiguousIsbnException : public std::exception
         return "ISBN is not unique";
     }
 };
+
+#endif

@@ -1,6 +1,9 @@
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
+#include <vector>
+#include <string>
+#include "book.hpp"
 
 class DbUtil
 {
@@ -11,17 +14,25 @@ public:
         std::string fileText;
         std::ifstream file;
 
+        std::vector<std::string> dataList;
         file.open(FILE_NAME, std::ios::in);
-        while (std::getline(file, fileText))
+        while (std::getline(file, fileText, ','))
         {
-            int isbn = stoi(fileText.substr(0, fileText.find_first_of(',')));
-            std::string title = fileText.substr(fileText.find_first_of(',') + 1, fileText.find_last_of(',') - fileText.find_first_of(',') - 1);
-            std::string description = fileText.substr(fileText.find_last_of(',') + 1, fileText.length());
-
-            Book book(isbn, title, description);
-            resultList.insert({isbn, book});
+           dataList.push_back(fileText);
         }
         file.close();
+
+        //TODO
+        // for (size_t i = 0; i < dataList.size(); i+=3)
+        // {
+        //     //std::cout << dataList[] << std::endl;
+        //     // int isbn = stoi(dataList[0 + i]);
+        //     // std::string title = dataList[1 + i];
+        //     // std::string description = dataList[2 + i];
+
+        //     // Book book(isbn, title, description);
+        //     // resultList.insert({isbn, book});
+        // }
 
         return resultList;
     }
