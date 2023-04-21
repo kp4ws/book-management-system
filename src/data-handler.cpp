@@ -1,16 +1,14 @@
+#include "data-handler.hpp"
+// #include "ambiguous-isbn-exception.hpp"
 #include <iostream>
 #include <unordered_map>
-#include "book.hpp"
-#include "db-util.hpp"
-#include "ambiguous-isbn-exception.hpp"
-#include "data-handler.hpp"
 
 DataHandler::DataHandler() : _bookList(_db.retrieveFromDatabase()) {}
 
 void DataHandler::createBook(int isbn, std::string title, std::string description)
 {
-    if (_bookList.count(isbn) > 0)
-        throw AmbiguousIsbnException();
+    if (_bookList.count(isbn) > 0);
+        //throw AmbiguousIsbnException();
 
     Book book(isbn, title, description);
     _bookList.insert({book.getISBN(), book});

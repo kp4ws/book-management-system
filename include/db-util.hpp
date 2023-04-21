@@ -1,7 +1,9 @@
 #ifndef __DB_UTIL_HEADER__
 #define __DB_UTIL_HEADER__
 
+#include "book.hpp"
 #include <unordered_map>
+#include <string>
 
 class DbUtil
 {

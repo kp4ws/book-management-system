@@ -1,6 +1,8 @@
 #ifndef __BOOK_CONTAINER_HEADER__
 #define __BOOK_CONTAINER_HEADER__
 
+#include <string>
+
 class Book
 {
 
