@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "input-handler.hpp"
-#include "ambiguous-isbn-exception.hpp"
 
 void InputHandler::readInput()
 {
@@ -66,7 +65,8 @@ void InputHandler::handleDisplay()
     std::cout << "Enter isbn: ";
     std::cin >> unparsedIsbn;
 
-    dataHandler.displayBook(stoi(unparsedIsbn));
+    std::string message = dataHandler.displayBook(stoi(unparsedIsbn));
+    std::cout << message;
 }
 
 // You cannot update isbn
