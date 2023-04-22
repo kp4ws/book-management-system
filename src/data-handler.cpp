@@ -4,7 +4,7 @@
 
 DataHandler::DataHandler() : _bookList(_db.retrieveFromDatabase()) {}
 
-void DataHandler::createBook(int isbn, std::string title, std::string description) throw(AmbiguousIsbnException)
+void DataHandler::createBook(int isbn, std::string title, std::string description)
 {
     if (_bookList.count(isbn) > 0)
         throw AmbiguousIsbnException();

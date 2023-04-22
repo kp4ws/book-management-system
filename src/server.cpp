@@ -14,6 +14,6 @@ void Server::startProgram()
     }
     catch (const std::exception &e)
     {
-        std::cerr << "***PROGRAM ERROR***" << '\n';
+        std::cerr << "***PROGRAM ERROR***" << e.what() << '\n';
     }
 }

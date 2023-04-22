@@ -10,6 +10,12 @@ std::unordered_map<int, Book> DbUtil::retrieveFromDatabase()
     std::ifstream file(FILE_NAME);
     std::string line;
 
+    if (!file.good() || !file.is_open())
+    {
+        std::string message = "Failed to open file: " + FILE_NAME;
+        throw std::runtime_error(message);
+    }
+
     while (std::getline(file, line))
     {
         std::stringstream ss(line);
@@ -39,7 +45,7 @@ std::unordered_map<int, Book> DbUtil::retrieveFromDatabase()
     return resultList;
 }
 
-void DbUtil::saveToDatabase(Book book)
+void DbUtil::saveToDatabase(const Book& book)
 {
     std::ofstream file;
     file.open(FILE_NAME, std::ios::out | std::ios::app);

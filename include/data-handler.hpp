@@ -15,7 +15,7 @@ private:
 
 public:
     DataHandler();
-    void createBook(int isbn, std::string title, std::string description) throw(AmbiguousIsbnException);
+    void createBook(int isbn, std::string title, std::string description);
     std::string displayBook(int isbn);
     void updateBook(int isbn, std::string newTitle, std::string newDescription);
     void deleteBook(int isbn);

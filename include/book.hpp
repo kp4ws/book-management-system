@@ -1,6 +1,7 @@
 #ifndef __BOOK_CONTAINER_HEADER__
 #define __BOOK_CONTAINER_HEADER__
 
+#include <iostream>
 #include <string>
 
 class Book
@@ -20,7 +21,6 @@ public:
     std::string getStandardFormat() const;
 
     friend std::ostream &operator<<(std::ostream &os, const Book &book);
-    //friend std::istream &operator>>(std::istream &is, const Book &book);
 };
 
 #endif

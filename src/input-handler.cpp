@@ -66,10 +66,9 @@ void InputHandler::handleDisplay()
     std::cin >> unparsedIsbn;
 
     std::string message = dataHandler.displayBook(stoi(unparsedIsbn));
-    std::cout << message;
+    std::cout << message << std::endl;
 }
 
-// You cannot update isbn
 void InputHandler::handleUpdate()
 {
     std::string unparsedIsbn = "", newTitle = "", newDescription = "";
