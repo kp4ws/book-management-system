@@ -1,4 +1,4 @@
-# book-management-system (work in progress)
+# book-management-system
 ## About
 CMD application to manage an inventory of books.  
 - I developed this application as a project based approach to learn C++.
