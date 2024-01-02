@@ -1,26 +1,19 @@
-#ifndef __BOOK_CONTAINER_HEADER__
-#define __BOOK_CONTAINER_HEADER__
+#ifndef __BOOK_HEADER__
+#define __BOOK_HEADER__
 
-#include <iostream>
 #include <string>
+#include <iostream>
 
-class Book
-{
-
-private:
+struct Book {
     int _isbn;
     std::string _title;
     std::string _description;
 
-public:
-    Book(int newISBN, std::string newTitle, std::string newDescription) : _isbn(newISBN), _title(newTitle), _description(newDescription) {}
-    int getISBN() const { return _isbn; }
-    std::string getTitle() const { return _title; }
-    std::string getDescription() const { return _description; }
-    std::string getCSVFormat() const;
-    std::string getStandardFormat() const;
-
-    friend std::ostream &operator<<(std::ostream &os, const Book &book);
+    Book(int isbn, std::string title, std::string description) : _isbn(isbn), _title(title), _description(description){}
+    
+    void display() const {
+        std::cout << "ISBN: " << _isbn << "\nTitle: " << _title << "\nDescription: " << _description << std::endl;
+    }
 };
 
 #endif
