@@ -10,4 +10,4 @@ While developing this application, I tried to separate the concerns into their o
 
 ## Future updates and application legacy
 - While building this app, I wasn't very familiar with C++ syntax. Since then I've become very familiar with C++ through the various assignments I've completed for my school courses.
-- I intend to enhance and optimize this application by implementing best practices in C++
+- I've tried to make the code for this application modular, with high cohesion and loose coupling. Future iterations could include integrating a GUI menu or perhaps using the code as a base for other projects, such as a movie management system.
