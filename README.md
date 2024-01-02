@@ -5,8 +5,11 @@ A command-line application to manage an inventory of books.
 
 ## Separation of concerns
 While developing this application, I tried to separate the concerns into their own implementaton files.
-- InputHandler class deals with user input
-- DataHandler class performs operations from the result of a user input
+- App class is the entry point to the application.
+- Server class initiates the conversation with the InputHandler class.
+- InputHandler class deals with user input.
+- DataHandler class performs operations from the result of a user input.
+- DbUtil class deals with database operations, which in this project uses a csv file to store and retrieve data.
 
 ## Future updates and application legacy
 - While building this app, I wasn't very familiar with C++ syntax. Since then I've become very familiar with C++ through the various assignments I've completed for my school courses.
