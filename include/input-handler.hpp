@@ -23,6 +23,7 @@ private:
     void handleDelete();
 
 public:
+    InputHandler(){}
     void readInput();
 };
 

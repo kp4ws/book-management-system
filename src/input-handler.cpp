@@ -45,9 +45,10 @@ void InputHandler::handleCreate()
     std::cout << "Enter isbn: ";
     std::cin >> unparsedIsbn;
     std::cout << "Enter title: ";
-    std::cin >> title;
+    std::cin.ignore();
+    std::getline(std::cin, title);
     std::cout << "Enter description: ";
-    std::cin >> description;
+    std::getline(std::cin, description);
 
     try
     {
@@ -65,8 +66,7 @@ void InputHandler::handleDisplay()
     std::cout << "Enter isbn: ";
     std::cin >> unparsedIsbn;
 
-    std::string message = dataHandler.displayBook(stoi(unparsedIsbn));
-    std::cout << message << std::endl;
+    dataHandler.displayBook(stoi(unparsedIsbn));
 }
 
 void InputHandler::handleUpdate()
@@ -75,9 +75,10 @@ void InputHandler::handleUpdate()
     std::cout << "Enter isbn of book you want to update: ";
     std::cin >> unparsedIsbn;
     std::cout << "Enter title: ";
-    std::cin >> newTitle;
+    std::cin.ignore();
+    std::getline(std::cin, newTitle);
     std::cout << "Enter description: ";
-    std::cin >> newDescription;
+    std::getline(std::cin, newDescription);
 
     dataHandler.updateBook(stoi(unparsedIsbn), newTitle, newDescription);
 }

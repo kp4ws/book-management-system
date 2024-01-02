@@ -10,20 +10,20 @@ void DataHandler::createBook(int isbn, std::string title, std::string descriptio
         throw AmbiguousIsbnException();
 
     Book book(isbn, title, description);
-    _bookList.insert({book.getISBN(), book});
-    _db.saveToDatabase(book);
+    _bookList.insert({book._isbn, book});
+    _db.saveBookToDatabase(book);
 }
 
-std::string DataHandler::displayBook(int isbn)
+void DataHandler::displayBook(int isbn)
 {
     if (_bookList.count(isbn) == 0)
     {
         std::cout << "No books matching ISBN: " << isbn << '\n';
-        return "";
+        return;
     }
 
     Book book = _bookList.at(isbn);
-    return book.getStandardFormat();
+    book.display();
 }
 
 void DataHandler::updateBook(int isbn, std::string newTitle, std::string newDescription)
@@ -35,8 +35,10 @@ void DataHandler::updateBook(int isbn, std::string newTitle, std::string newDesc
     }
 
     Book book = _bookList.at(isbn);
-    Book newBook(book.getISBN(), newTitle, newDescription);
-    book = newBook;
+    book._title = newTitle;
+    book._description = newDescription;
+
+    _db.updateInDatabase(book);
 }
 
 void DataHandler::deleteBook(int isbn)
@@ -47,4 +49,5 @@ void DataHandler::deleteBook(int isbn)
         return;
     }
     _bookList.erase(isbn);
+    _db.deleteFromDatabase(isbn);
 }

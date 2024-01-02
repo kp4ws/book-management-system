@@ -8,11 +8,13 @@
 class DbUtil
 {
 private:
-    const std::string FILE_NAME = "resources/db.csv";
+    const static std::string FILE_NAME;
 
 public:
     std::unordered_map<int, Book> retrieveFromDatabase();
-    void saveToDatabase(const Book& book);
+    void saveBookToDatabase(const Book &book);
+    void updateInDatabase(const Book &book);
+    void deleteFromDatabase(int isbnToDelete);
 };
 
 #endif
