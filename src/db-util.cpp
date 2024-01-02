@@ -47,7 +47,7 @@ std::unordered_map<int, Book> DbUtil::retrieveFromDatabase()
     return resultList;
 }
 
-void DbUtil::saveBookToDatabase(const Book& book)
+void DbUtil::saveBookToDatabase(const Book &book)
 {
     std::ofstream file;
     file.open(FILE_NAME, std::ios::out | std::ios::app);
@@ -58,7 +58,7 @@ void DbUtil::saveBookToDatabase(const Book& book)
 void DbUtil::updateInDatabase(const Book &book)
 {
     std::ifstream inFile(FILE_NAME);
-    std::ofstream outFile("temp.csv");
+    std::ofstream outFile("temp.csv", std::ios::app);
     std::string line;
 
     if (!inFile.good() || !inFile.is_open())
@@ -83,26 +83,26 @@ void DbUtil::updateInDatabase(const Book &book)
             std::cerr << "Invalid input line: " << line << std::endl;
             continue;
         }
-        
-        int isbn = std::stoi(tokens[0]);
-        std::string title = "";
-        std::string description = "";
 
-        if(isbn == book._isbn)
+        int isbn = std::stoi(tokens[0]);
+        std::string title = tokens[1];
+        std::string description = tokens[2];
+
+        if (isbn == book._isbn)
         {
-            outFile << tokens[0] << "," << book._title << "," << book._description << std::endl;
+            outFile << isbn << "," << book._title << "," << book._description << std::endl;
         }
         else
         {
-            outFile << tokens[0] << "," << tokens[1] << "," << tokens[2] << std::endl;
+            outFile << isbn << "," << title << "," << description << std::endl;
         }
-
-        inFile.close();
-        outFile.close();
-
-        std::remove(FILE_NAME.c_str());
-        std::rename("temp.csv", FILE_NAME.c_str());
     }
+
+    inFile.close();
+    outFile.close();
+
+    std::remove(FILE_NAME.c_str());
+    std::rename("temp.csv", FILE_NAME.c_str());
 }
 
 void DbUtil::deleteFromDatabase(int isbnToDelete)
